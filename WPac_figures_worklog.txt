@@ -1,0 +1,208 @@
+Pacific fisheries disasters and fishery status in WPac--
+Objectives:
+  - contextualize fishery collapses in the WPac and GOA in order to support fundraising efforts for the IYS expedition
+    - visualize catch/CPUE from priority NPFC species
+      - contextualize NPFC fisheries, especially Pacific saury, with effort and proceedings from NPFC meetings
+    - report/visualize Pacific cod fisheries decline in the GOA due to heat waves
+    - plot and report on Pacific salmon fisheries collapses in the US, and changes over time (thanks Aidan!!)
+************************************************************
+2021-06-24--
+Files created:
+  - 'NPFC_catch_allsquid_allcountries.png'
+    - neon and japanese flying squid catch plots
+
+Files edited:
+  - 'report.Rmd'
+  - 'NPFC catch data.Rmd'
+
+Summary:
+  - showed plots to Mark - got a seal of approval
+  - plot just squid
+  - included NPFC convention map
+
+Breadcrumbs:
+  - do a bit more reading into SSC-06 report
+  - more research into overlap between salmon and saury?
+  - figure out what the temperature envelopes that salmon and saury prefer in the NPac
+  - pull out catch and abundance stats for Pcod from most recent AFSC stock asssessment and catch statistics
+
+
+************************************************************
+2021-06-22--
+Files created:
+  - 'report.Rmd'
+  - CPUE figures
+
+Brief:
+  - report writing time in RMarkdown
+
+Summary:
+  - started writing up short report for Mark. Learning some of the basics of RMarkdown!
+  - plotted up the CPUE used in stock assessment models
+  - gotten most of the LH, dist, etc. information down
+
+Breadcrumbs:
+  - **include NPFC convention area map
+
+************************************************************
+2021-06-18--
+Files created:
+  - 'NPFC_CPUE_saury_allcountries.pdf'
+    - saury CPUE by vessel for all countries
+  - 'NPFC_saury_CPUE_2019_stock_assessment_June182021.csv'
+
+Brief:
+  - CPUE
+
+Summary:
+  - calculated saury CPUE into a plot
+  - couldn't find how CPUE was calculated, but the stock assessments have detailed F and BMSY plots and base-case scenarios
+  - found the CPUE used for the stock assessment models from 1980-2019
+
+Breadcrumbs:
+  - plot the stock assessment CPUE as a scatter/line plot
+  - read through the SSC-06 report, since I think it is the most relevant and paper so far
+  - create a short data summary of saury distribution, NPFC fisheries, and overlap with Zone 1  of the Expedition
+
+************************************************************
+2021-06-17--
+Files created:
+  - 'NPFC_catch_saury_allcountries_CA.pdf'
+  - 'NPFC_catch_allspecies_allcountries_CA.pdf'
+  - 'NPFC_catch_allspecies_NWvCA.pdf'
+  - 'NPFC_catch_saury_NWvCA.pdf'
+
+Brief:
+  - comparisons between National Waters and Convention Area for all species
+  - notes!
+
+Summary:
+  - working from a basic plot and adding/removing elements for customized plotting
+  - created plots for
+    - National Waters v Convention Area for saury & all species
+    - catch within CA for saury and all species, by country
+  - started taking Notion notes of saury LH, popdy
+
+Breadcrumbs:
+  - calculate CPUE and create CPUE timeseries plots
+  - determine how CPUE was calculated in the stock assessment
+  - review Small Scientific Committee reports and plug notes into Notion
+
+************************************************************
+2021-06-16--
+Files created:
+  - "figures/NPFC_saury_catch_allcountries.pdf"
+    - reported P.saury catch for all countries, includes TAC line
+  - "figures/NPFC_catch_allspecies_allcountries.pdf"
+    - reported catch for all NPFC priority species from all countries
+
+Files edited:
+  - 'NPFC catch data.Rmd'
+
+Brief:
+  - plotting funnnnn
+
+Summary:
+  - added TAC lines for total area and CA
+  - created plots comparing catch between CA and NWs
+  - figured out how plot margins and labels work in cowplot() and also theres a lot of cool functionality in cowplot! (https://www.rdocumentation.org/packages/cowplot/versions/1.1.1)
+
+  - So overall:
+    - plots for catch overall, per species
+    - plots for comparing CA and NW catch per species
+  - plots uploaded to Sharepoint
+
+Breadcrumbs:
+  - ***plots for comparing NW v CA catch shifts, one for saury and a plot grid for priority sp
+  - ***plots for catch on the high seas CA per species
+  - review Small Scientific Committee reports and plug notes into Notion
+  - Describe LH, pop dy, stocks, and yearly distribution of Pacific saury
+
+
+************************************************************
+2021-06-15--
+Files created:
+  -
+
+Files edited:
+  - 'NPFC catch data.Rmd'
+
+Brief:
+  - nice catch plots, and more work to do
+
+Summary:
+  - making plots of catch and effort, both total and spatial effort
+    - RColorBrewer is v v nice :>
+  showed plots to Mark, recommended that I review the stock assessment for some context and try to get a hold of 1950s data
+      - "Tt may be good to show domestic catches separately from the Convention area.  I don't know the stock id/dynamics.  Is it all one population that they are fishing?  The CPUE will be interesting."
+      - "It is possible that there are only domestic statistics prior to 95 which is likely when the Convention was signed. The high seas landings may be undocumented.  If NPFC has a stock assessment published it should describe this."
+    - found Toshihide Iwasaki associated with PICES session
+
+Breadcrumbs:
+  - insert TAC line for saury, including total TAC and CA TAC
+  - review Small Scientific Committee reports and plug notes into Notion
+  - Describe LH, pop dy, stocks, and yearly distribution of Pacific saury
+  - email Iwasaki-san about his PICES slides and the dataset he used to plot it
+  - spatial catch? NW v CA
+  - calculate CPUE
+
+
+************************************************************
+2021-06-14--
+Files created:
+  - 'NPFC catch data.Rmd'
+
+Brief:
+  - plotting time
+
+Summary:
+  - made .rmd file for creating raw catch plots
+  - made a theme template
+  - played around w RColorBrewer
+
+Breadcrumbs:
+  - make plots for squid, mackerel, and sardine
+  - calculate CPUE?
+  - show plots to Mark for approval
+
+************************************************************
+2021-06-10--
+Files created:
+  - 'NPFCcatchstats_June102021.csv' [from 'NPFCcatchstats.csv']
+  - 'NPFCeffortstats_June102021.csv' [from 'NPFCeffortstats.csv']
+
+Brief:
+  - data entry, etc.
+
+Summary:
+  - updated catch and effort with Japanese sardine and chub+spotted mackerel
+
+Breadcrumbs:
+  - plot out preliminary catch plots
+  - summarize status of key species based on grey lit and data into report
+  - explore making a GIF of the effort through time (will require a lot of screenshots and Adobe Premiere time...)
+
+
+************************************************************
+2021-06-09--
+Files created:
+  - 'NPFCcatchstats.csv'
+  - 'NPFCeffortstats.csv'
+  - 'spatial effort_NPFC_saury_2019.pdf' + .doc
+
+Brief:
+  - data recovery and preliminary viz ideas
+
+Summary:
+  - compiled catch and effort data from Pacific saury and squid fisheries from NPFC records into seperate .csvs
+  - pulled out the spatial extent of saury fishery in 2019 and put screenshots into plot
+    - would be cool to have this be a GIF of some sort?
+  - pulled out lots of grey literature and data on NPFC proceedings and Pacific cod stock assessments from RACE, RAMLegacy, etc.
+
+Breadcrumbs:
+  - finish compiling data from chub mackerel, sardine, and other NPFC species
+  - compile report on saury effort extent based on GIS extension
+    - maybe get a hold of the spatial effort data from NPFC?
+  - summarize status of key species based on grey lit and data
+  - explore making a GIF of the effort through time (will require a lot of screenshots and Adobe Premiere time...)
+************************************************************

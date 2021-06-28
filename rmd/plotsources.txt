@@ -1,0 +1,9 @@
+plot sources:
+
+Kuroshio_Oyashio_map: retrieved from NOAA-Fisheries METABASE Explorer. https://www.st.nmfs.noaa.gov/copepod/time-series/jp-30103/
+
+Kuroshio_Oyashio_map2: from Nishikawa H., Nishikawa S., Ishizaki, H. et al. 2020. Detection of the Oyashio and Kuroshio fronts under the projected climate change in the 21st century. Progress in Earth and Planetary Science 7, 29. https://doi.org/10.1186/s40645-020-00342-2
+
+2-Figure1-1: from Watanabe 2009. Watanabe, Yoshiro. 2009. Recruitment Variability of Small Pelagic Fish Populations in the Kuroshio-Oyashio Transition Region of the Western North Pacific. Journal of Northwest Atlantic Fishery Science 41: 197-204. https://doi.org/10.2960/J.V41.M635
+
+life-history-of-Pacific-saury: Schematic diagram of life history of Pacific saury (Cololabis saira) and ocean circulations in the northwestern Pacific. Solid lines indicate dominant current systems and dashed lines the migration routes. from Ito S., Sugisaki, H., Tsuda A., Yamamura O. 2004. Contributions of the VENFISH program: Meso-zooplankton, Pacific saury (Cololabis saira) and walleye Pollock (Theragra chalcogramma) in the northwestern Pacific. 13(s1)1-9. http://dx.doi.org/10.1111/j.1365-2419.2004.00309.x

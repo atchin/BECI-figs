@@ -1,0 +1,14 @@
+"0","squidcatchplotgrid <- plot_grid(neonsquidcatchplot +
+                                  scale_y_continuous(limits=c(0,300), expand=expansion(mult=c(0,0.1))) +
+                                  ylab(NULL) + xlab(NULL) + 
+                                  ggtitle('Neon flying squid catch - all waters'),
+                                jpnsquidcatchplot + theme(legend.position = 'bottom') + ylab(NULL) +
+                                  ggtitle('Japanese flying squid catch - all waters'),
+                                ncol=1, scale=0.9
+                                ) + 
+  theme(plot.margin=margin(l=10)) +
+  draw_label(label='Thousands of metric tonnes', x=0.01, y=0.5, angle=90)
+"
+"2","Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
+"
+"2","Removed 15 rows containing missing values (position_stack)."

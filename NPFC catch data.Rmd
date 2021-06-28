@@ -1,0 +1,395 @@
+---
+title: "NPFC figs"
+author: "Andrew C"
+date: "6/14/2021"
+output: html_document
+---
+
+
+
+## These figures are for Mark - fisheries data
+
+
+# getting set up
+```{r read in packages}
+library(tidyverse)
+library(here)
+# install.packages('RColorBrewer')
+library(RColorBrewer)
+library(cowplot)
+
+```
+
+```{r read in data}
+NPFCcatch <- read_csv(here('data//NPFCcatchstats_June102021.csv'))
+NPFCeffort <- read_csv(here('data//NPFCeffortstats_June102021.csv'))
+
+# explore data
+unique(NPFCcatch$species)
+unique(NPFCeffort$species)
+unique(NPFCcatch$region)
+unique(NPFCcatch$gear)
+unique(NPFCeffort$gear)
+
+# uniform styling for tidyverse
+NPFCcatch$region <- str_replace_all(NPFCcatch$region, "\n", "")
+NPFCeffort$species <- str_to_lower(NPFCeffort$species)
+NPFCcatch$gear <- str_to_lower(NPFCcatch$gear)
+NPFCeffort$gear <- str_to_lower(NPFCeffort$gear)
+```
+
+## CATCH plots
+
+```{r saury prelims}
+saury <- NPFCcatch %>% filter(species=='pacific_saury') %>% mutate(catch_mton=catch_mton/1000)
+
+stats <- saury %>%
+  group_by(year) %>%
+  summarize(sum_catch = sum(catch_mton))
+TAC_CA <- 198
+TAC <- 333.75
+#TAC/max(stats$sum_catch)
+TAC/mean(stats$sum_catch)
+
+stats_CA <- saury %>% filter(region=='CA') %>% 
+  group_by(year) %>%
+  summarize(sum_catch = sum(catch_mton))
+TAC_CA/max(stats_CA$sum_catch)
+TAC_CA/mean(stats_CA$sum_catch)
+
+saurycatchplot <- ggplot(data=saury, aes(x=year, y=catch_mton, fill=country)) +
+  geom_bar(position='stack', stat='identity')
+
+# custom color scale to hold constant with all plots
+convcountries <- brewer.pal(6, 'RdYlBu')
+names(convcountries) <- levels(NPFCcatch$country)
+customscale <- scale_fill_manual(values=convcountries, labels=c('China','Chinese Taipei','Japan','Korea','Russia', 'Vanuatu'))
+
+saurycatchplot <- saurycatchplot +
+  customscale +
+  scale_x_continuous(limits=c(1994,2021), expand=c(0,0)) +
+  scale_y_continuous(expand=expansion(mult=c(0,0.1)))  +
+  xlab('Year') +
+  ylab('Thousands of metric tonnes') +
+  labs(fill='NPFC convention countries') +
+  theme_classic() +
+  theme(legend.position = 'bottom')
+  
+saurycatchplot
+```
+
+```{r overall catch plot func}
+catchplotfnc <- function(sp, ...) {
+  dat <- NPFCcatch %>% filter(species==sp) %>% mutate(catch_mton=catch_mton/1000)
+  plot <- ggplot(data=dat, aes(x=year, y=catch_mton, fill=country)) +
+  geom_bar(position='stack', stat='identity') +
+  customscale +
+  scale_x_continuous(limits=c(1994,2021), expand=c(0,0)) +
+  scale_y_continuous(expand=expansion(mult=c(0,0.1)))  +
+  xlab('Year') +
+  ylab('Thousands of metric tonnes') +
+  theme_classic()
+}
+
+saurycatchplot <- catchplotfnc(sp='pacific_saury') +
+ggtitle('Pacific saury') +
+theme(legend.position='none') +
+geom_hline(yintercept=333.75,color='black',linetype='longdash', size=1)
+
+ggsave(here('figures', 'NPFC_catch_saury_allcountries.png'),
+       saurycatchplot +
+         theme(legend.position = 'bottom') +
+         ggtitle('Pacific saury catch (all areas)') + labs(fill='NPFC convention countries'),
+       width=200, height=150, units='mm')
+
+neonsquidcatchplot <- catchplotfnc(sp='neon_flying_squid') + ggtitle('Neon flying squid') + theme(legend.position='none')
+
+jpnsquidcatchplot <- catchplotfnc(sp='jpn_flying_squid') + ggtitle('Japanese flying squid')+ theme(legend.position='none')
+
+squidcatchplotgrid <- plot_grid(neonsquidcatchplot +
+                                  scale_y_continuous(limits=c(0,300), expand=expansion(mult=c(0,0.1))) +
+                                  ylab(NULL) + xlab(NULL) + 
+                                  ggtitle('Neon flying squid catch - all waters'),
+                                jpnsquidcatchplot + theme(legend.position = 'bottom') + ylab(NULL) +
+                                  ggtitle('Japanese flying squid catch - all waters'),
+                                ncol=1, scale=0.9
+                                ) + 
+  theme(plot.margin=margin(l=10)) +
+  draw_label(label='Thousands of metric tonnes', x=0.01, y=0.5, angle=90)
+squidcatchplotgrid
+ggsave(here('rmd', 'NPFC_catch_allsquid_allcountries.png'), squidcatchplotgrid +
+          labs(fill='NPFC convention countries', caption='Data from https://www.npfc.int/statistics.'),
+       width=200, height=150, units='mm')
+
+
+sardinecatchplot <- catchplotfnc(sp='jpn_sardine') + ggtitle('Japanese sardine')+ theme(legend.position='none')
+#sardinecatchplot
+
+mackerelcatchplot <- catchplotfnc(sp='chub_spotted_mackerel') + ggtitle('Chub & spotted mackerel') + theme(legend.position = 'none')
+#mackerelcatchplot
+
+# extract legend
+leg <- cowplot::get_legend(saurycatchplot + theme(legend.position='right')+ labs(fill='NPFC convention countries'))
+
+NPFCcatch_plotgrid <- plot_grid(saurycatchplot + ylab(NULL),
+                                sardinecatchplot + ylab(NULL),
+                                mackerelcatchplot + ylab(NULL),
+                                neonsquidcatchplot + ylab(NULL),
+                                jpnsquidcatchplot + ylab(NULL), leg, ncol=2,
+                                scale=0.9) +
+  theme(plot.margin=margin(l=10)) +
+  draw_label(label='Thousands of metric tonnes', x=0.01, y=0.5, angle=90)
+NPFCcatch_plotgrid
+ggsave(here('figures', 'NPFC_catch_allspecies_allcountries.png'),
+       NPFCcatch_plotgrid,
+       width=300, height=150, units='mm')
+
+```
+
+```{r plot function for comparing catch in convention areas v national waters}
+unique(saury$region)
+
+regioncolors <- rev(brewer.pal(length(unique(NPFCcatch$region)), 'Paired'))
+names(regioncolors) <- levels(NPFCcatch$region)
+
+regionscale <- scale_fill_manual(values=regioncolors,
+                                  breaks=c('NW', "CA", "CA170EWest", "CA170EEast", "Composite"),
+                                  labels=c('National Waters', "Convention Area (CA)", "CA - west of 170\u00B0E", "CA - east of 170\u00B0E", "Composite"))
+
+catchplotfnc_areacomparison <- function(sp, ...) {
+  dat <- NPFCcatch %>% filter(species==sp) %>% mutate(catch_mton=catch_mton/1000)
+
+  plot <- ggplot(data=dat, aes(x=year, y=catch_mton, fill=region)) +
+  regionscale +
+  geom_bar(position='stack', stat='identity') +
+  scale_x_continuous(limits=c(1994,2021), expand=c(0,0)) +
+  scale_y_continuous(expand=expansion(mult=c(0,0.1)))  +
+  xlab('Year') +
+  ylab('Thousands of metric tonnes') +
+  theme_classic()
+}
+
+# saury catch overall
+saurycatchplot_areacomparison <- catchplotfnc_areacomparison(sp='pacific_saury') +
+geom_hline(yintercept=333.75,color='black',linetype='longdash', size=1) +
+theme(legend.position='none') # baseplot for grid
+saurycatchplot_areacomparison + theme(legend.position = 'bottom')
+
+ggsave(here('figures', 'NPFC_catch_saury_NWvCA.png'), saurycatchplot_areacomparison +
+         ggtitle('Pacific saury Domestic v. NPFC Convention Area catch') +
+         theme(legend.position = 'bottom') +
+         labs(fill='Catch Region'), width=200, height=150, units='mm') #, panel.background = element_rect(fill='#e7ebe8'))
+
+# saury catch by country - necessary?
+# saurycatchplot_areacomparison + facet_wrap(~country, ncol=2, scales='free')
+
+
+neonsquidcatchplot_areacomparison <- catchplotfnc_areacomparison(sp='neon_flying_squid') + ggtitle('Neon flying squid') + theme(legend.position='none')
+neonsquidcatchplot_areacomparison
+# neonsquidcatchplot_areacomparison + facet_wrap(~country, ncol=2, scales='free')
+
+jpnsquidcatchplot_areacomparison <- catchplotfnc_areacomparison(sp='jpn_flying_squid') + ggtitle('Japanese flying squid')+ theme(legend.position='none')
+jpnsquidcatchplot_areacomparison
+# jpnsquidcatchplot_areacomparison + facet_wrap(~country, ncol=2, scales='free')
+
+sardinecatchplot_areacomparison <- catchplotfnc_areacomparison(sp='jpn_sardine') + ggtitle('Japanese sardine')+ theme(legend.position='none')
+sardinecatchplot_areacomparison
+# sardinecatchplot_areacomparison + facet_wrap(~country, ncol=2, scales='free')
+
+mackerelcatchplot_areacomparison <- catchplotfnc_areacomparison(sp='chub_spotted_mackerel') + ggtitle('Chub & spotted mackerel') + theme(legend.position = 'none')
+mackerelcatchplot_areacomparison
+# mackerelcatchplot_areacomparison + facet_wrap(~country, ncol=2, scales='free')
+
+# extract legend - retrieve all regions
+
+legendplot <- ggplot(NPFCcatch, aes(x=year, y=catch_mton, fill=region)) +
+  geom_bar(position='stack', stat='identity') +
+  regionscale +
+  theme(legend.position = 'right') +
+  labs(fill='Catch Region')
+leg_areacomparison <- cowplot::get_legend(legendplot)
+
+NPFCcatch_allspecies_areacomparison_plotgrid <- plot_grid(saurycatchplot_areacomparison + ggtitle('Pacific saury') + ylab(NULL),
+                                sardinecatchplot_areacomparison + ylab(NULL),
+                                mackerelcatchplot_areacomparison + ylab(NULL),
+                                neonsquidcatchplot_areacomparison + ylab(NULL),
+                                jpnsquidcatchplot_areacomparison + ylab(NULL), leg_areacomparison, ncol=2,
+                                scale=0.9) +
+  theme(plot.margin=margin(l=10)) +
+  draw_label(label='Thousands of metric tonnes', x=0.01, y=0.5, angle=90)
+NPFCcatch_allspecies_areacomparison_plotgrid
+ggsave(here('figures', 'NPFC_catch_allspecies_NWvCA.png'),
+       NPFCcatch_allspecies_areacomparison_plotgrid,
+       width=300, height=150, units='mm')
+
+
+```
+
+```{r catch on high seas, for saury and by country}
+catchplotfnc_CA <- function(sp, CA=TRUE, ...) {
+  catchsp <- NPFCcatch %>% mutate(is_CA=str_detect(region, 'CA'),
+                                  catch_mton=catch_mton/1000) %>%
+    filter(species==sp & is_CA==CA) %>%
+    select(-is_CA)
+
+catchplot <- ggplot(data=catchsp, aes(x=year, y=catch_mton, fill=country)) +
+  geom_bar(position='stack', stat='identity') +
+  customscale +
+  scale_x_continuous(limits=c(1994,2021), expand=c(0,0)) +
+  scale_y_continuous(expand=expansion(mult=c(0,0.1)))  +
+  xlab('Year') +
+  ylab('Thousands of metric tonnes') +
+  theme_classic()
+
+  return(catchplot)
+}
+
+# test
+saurycatchplot_CA <- catchplotfnc_CA('pacific_saury', CA=TRUE) +
+  geom_hline(yintercept=198, color='black',linetype='longdash', size=1) +
+  ggtitle('Pacific saury catch in NPFC convention area')
+saurycatchplot_CA
+saurycatchplot_NW <- catchplotfnc_CA('pacific_saury', CA=FALSE)+  ggtitle('Pacific saury catch in domestic EEZs')
+saurycatchplot_NW
+
+# save actual plot
+saurycatchplot_CA <- catchplotfnc_CA(sp='pacific_saury') +
+  ggtitle('Pacific saury') +
+  theme(legend.position='none') +
+  geom_hline(yintercept=198, color='black',linetype='longdash', size=1)
+# check
+saurycatchplot_CA
+
+ggsave(here('figures', 'NPFC_catch_saury_allcountries_CA.png'),
+       saurycatchplot_CA +
+         theme(legend.position = 'bottom') +
+         ggtitle('Pacific saury catch in NPFC high seas convention area') +
+         labs(fill='NPFC convention countries'),
+       width=200, height=150, units='mm')
+
+neonsquidcatchplot_CA <- catchplotfnc_CA(sp='neon_flying_squid') + ggtitle('Neon flying squid') + theme(legend.position='none')
+
+jpnsquidcatchplot_CA <- catchplotfnc_CA(sp='jpn_flying_squid') + ggtitle('Japanese flying squid')+ theme(legend.position='none')
+
+sardinecatchplot_CA <- catchplotfnc_CA(sp='jpn_sardine') + ggtitle('Japanese sardine')+ theme(legend.position='none')
+#sardinecatchplot
+
+mackerelcatchplot_CA <- catchplotfnc_CA(sp='chub_spotted_mackerel') + ggtitle('Chub & spotted mackerel') + theme(legend.position = 'none')
+#mackerelcatchplot
+
+
+NPFCcatch_allspecies_allcountries_CA_plotgrid <- plot_grid(saurycatchplot_CA + ylab(NULL),
+                                sardinecatchplot_CA + ylab(NULL),
+                                mackerelcatchplot_CA + ylab(NULL),
+                                neonsquidcatchplot_CA + ylab(NULL),
+                                jpnsquidcatchplot_CA + ylab(NULL), leg, ncol=2,
+                                scale=0.9) +
+  theme(plot.margin=margin(l=10)) +
+  draw_label(label='Thousands of metric tonnes', x=0.01, y=0.5, angle=90)
+NPFCcatch_allspecies_allcountries_CA_plotgrid #check
+ggsave(here('figures', 'NPFC_catch_allspecies_allcountries_CA.png'),
+       NPFCcatch_allspecies_allcountries_CA_plotgrid,
+       width=300, height=150, units='mm')
+
+
+
+```
+
+
+
+### Calculate CPUE
+```{r Saury CPUE}
+# retrieve NPFC stock asssessment CPUE
+
+# use convention countries from the other saury plots
+convcountries
+# [1] "#D73027" "#FC8D59" "#FEE090" "#E0F3F8" "#91BFDB" "#4575B4"
+# # corresponds to:'China','Chinese Taipei','Japan','Korea','Russia','Vanuatu'
+
+cpue <- read_csv(here('data//NPFC_saury_CPUE_2019_stock_assessment_June182021.csv'))
+# colnames(cpue)
+cpue2 <- cpue %>% pivot_longer(cols=c("CPUE_JPN_early", "CPUE_JPN_late",  "CPUE_KOR", "CPUE_RUS","CPUE_CT","CPUE_CHN", "Joint_CPUE"),
+                              names_to='country',
+                              values_drop_na = T) %>% drop_na(country)
+
+bigplot <- cpue2 %>%
+  ggplot(aes(x=year, y=value)) +
+  geom_point(aes(color=country)) +
+  geom_line(aes(color=country)) +
+  scale_color_brewer(palette='RdYlBu',
+labels=c('China','Chinese Taipei','Japan early','Japan late', 'Korea','Russia')) +
+  labs(color='Country dataset') +
+  scale_x_continuous(limits=c(1979,2019),breaks=c(seq(1980,2018,by=5),2019), expand=c(0,1.1)) +
+  xlab('Year') +
+  ylab('Standardized CPUE') +
+  theme_classic() +
+  theme(legend.position = 'bottom') 
+  
+bigplot
+```
+
+```{r }
+cpue_JPN <- cpue %>% ggplot(aes(x=year, y=CPUE_JPN_early)) +
+  geom_point(color='#FEE090', shape=4) + geom_line(color='#FEE090', size=1) +
+  geom_point(aes(y=CPUE_JPN_late), color='#FEE090') + geom_line(aes(y=CPUE_JPN_late),color='#FEE090', size=1) +
+  scale_x_continuous(limits=c(1979,2019),breaks=c(seq(1980,2018,by=4),2019), expand=c(0,1.1)) +
+  scale_y_continuous(expand=expansion(mult=c(0.1,0.1)), limits=c(0,5))  +
+  xlab('Year') +
+  ylab('Standardized CPUE') +
+  theme_classic() +
+  ggtitle('Japan')
+cpue_JPN
+
+cpue_china <- cpue %>% ggplot(aes(x=year, y=CPUE_CHN)) + geom_point(color='#D73027') + geom_line(color='#D73027',size=1) +
+  scale_x_continuous(limits=c(1979,2019),breaks=c(seq(1980,2018,by=4),2019), expand=c(0,1.1)) +
+  scale_y_continuous(expand=expansion(mult=c(0.1,0.1)), limits=c(0,18))  +
+  xlab('Year') +
+  ylab('Standardized CPUE') +
+  theme_classic() +
+  ggtitle('China')
+cpue_china
+
+cpue_korea <- cpue %>% ggplot(aes(x=year, y=CPUE_KOR)) + geom_point(color='#E0F3F8') + geom_line(color='#E0F3F8',size=1) +
+  scale_x_continuous(limits=c(1979,2019),breaks=c(seq(1980,2018,by=4),2019), expand=c(0,1.1)) +
+  scale_y_continuous(expand=expansion(mult=c(0.1,0.1)))  +
+  xlab('Year') +
+  ylab('Standardized CPUE') +
+  theme_classic() +
+  ggtitle('Korea')
+cpue_korea
+
+cpue_chntaipei <- cpue %>% ggplot(aes(x=year, y=CPUE_CT)) + geom_point(color='#FC8D59') + geom_line(color='#FC8D59', size=1) +
+  scale_x_continuous(limits=c(1979,2019),breaks=c(seq(1980,2018,by=4),2019), expand=c(0,1.1)) +
+  scale_y_continuous(expand=expansion(mult=c(0.1,0.1)))  +
+  xlab('Year') +
+  ylab('Standardized CPUE') +
+  theme_classic() +
+  ggtitle('Chinese Taipei')
+cpue_chntaipei
+
+cpue_russia <- cpue %>% ggplot(aes(x=year, y=CPUE_RUS)) + geom_point(color='#91BFDB') + geom_line(color='#91BFDB', size=1) +
+  scale_x_continuous(limits=c(1979,2019),breaks=c(seq(1980,2018,by=4),2019), expand=c(0,1.1)) +
+scale_y_continuous(expand=expansion(mult=c(0.1,0.1)))  +
+xlab('Year') +
+ylab('Standardized CPUE') +
+theme_classic() +
+ggtitle('Russia')
+cpue_russia
+
+
+
+cpue_plotgrid <- plot_grid(cpue_china + ylab(NULL),
+          cpue_chntaipei + ylab(NULL),
+          cpue_JPN + ylab(NULL),
+          cpue_korea + ylab(NULL),
+          cpue_russia + ylab(NULL),
+          ncol=2,
+          scale=0.9) +
+theme(plot.margin=margin(l=10)) +
+draw_label(label='NPFC standardized CPUE', x=0.01, y=0.5, angle=90)
+cpue_plotgrid
+ggsave(here('figures', 'NPFC_CPUE_saury_plotgrid.png'),
+       cpue_plotgrid,
+       width=300, height=150, units='mm')
+
+```

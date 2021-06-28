@@ -1,0 +1,4 @@
+'NPFC' data from https://npfc.org/statistics
+GOA_PCOD_2020_Appendix_2.2_Model
+
+Pacific cod data from Barbeaux et al. 2020. Assessment of the Pacific cod stock in the Gulf of Alaska. In NPFMC Gulf of Alaska SAFE. Catch data up to October 14, 2021.

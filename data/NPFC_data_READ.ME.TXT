@@ -1,0 +1,11 @@
+notes on NPFC catch and effort data - as of 2021-06-10
+
+In region:
+  - 'NW' = National Waters, or within a country's EEZ (200 nm)
+  - 'CA' = NPFC Convention Area
+
+In gear:
+  - 'other' = ???
+
+- Japan has mostly preliminary estimates for catch and effort for all species in 2020
+- Japan's effort on Japanese sardine has not been updated for 2020

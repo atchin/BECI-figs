@@ -1,0 +1,13 @@
+Acronyms
+
+ABL - Auke Bay Laboratory
+ABC - Allowable Biological Catch
+ADFG - Alaska Department Fish & Game
+CV - Coefficient of Variation
+deltaGLM - delta Generalized Linear Model
+IPHC - International Pacific Halibut Commission
+GHL - Groundfish Harvest Level
+GOA - Gulf of Alaska
+OFL - Overfishing Level
+RPN - Relative Population Numbers
+TAC - Total Allowable Catch

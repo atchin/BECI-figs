@@ -1,0 +1,13 @@
+"0","NPFCeffort <- read_csv(here('data//NPFCeffortstats_June102021.csv'))
+"
+"2","Parsed with column specification:
+cols(
+  year = [32mcol_double()[39m,
+  region = [31mcol_character()[39m,
+  gear = [31mcol_character()[39m,
+  country = [31mcol_character()[39m,
+  species = [31mcol_character()[39m,
+  fishingdays = [32mcol_double()[39m,
+  vessels = [32mcol_double()[39m
+)
+"
