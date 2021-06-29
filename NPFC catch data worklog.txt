@@ -1,10 +1,28 @@
-Pacific fisheries disasters and fishery status in WPac--
+NPFC worklog --
 Objectives:
-  - contextualize fishery collapses in the WPac and GOA in order to support fundraising efforts for the IYS expedition
+  - contextualize fisheries in the Western Pacific
     - visualize catch/CPUE from priority NPFC species
       - contextualize NPFC fisheries, especially Pacific saury, with effort and proceedings from NPFC meetings
-    - report/visualize Pacific cod fisheries decline in the GOA due to heat waves
-    - plot and report on Pacific salmon fisheries collapses in the US, and changes over time (thanks Aidan!!)
+
+************************************************************
+2021-06-28--
+Files edited:
+  - 'NPFC catch data.Rmd'
+  - 'pacific_cod_catch_June252021.csv'
+
+Brief:
+  - cleaning up!
+
+Summary:
+  - removed CPUE from the catch.Rmd,  but retained in the report.Rmd
+  - removed the *2020 prefix from the pacific cod catch files
+  - ran 'NPFC catch data.Rmd' and made sure everything is clear
+
+Breadcrumbs:
+  - plot cod? if I have time...
+    - need to convert the numbers into numeric
+  - leave READ.ME for description of all scripts in the folder
+
 ************************************************************
 2021-06-24--
 Files created:
@@ -22,8 +40,8 @@ Summary:
   - included NPFC convention map
 
 Breadcrumbs:
-  - do a bit more reading into SSC-06 report
-  - more research into overlap between salmon and saury?
+  - do a bit more reading into SSC-06 report [NULL]
+  - more research into overlap between salmon and saury? [NULL]
   - figure out what the temperature envelopes that salmon and saury prefer in the NPac
   - pull out catch and abundance stats for Pcod from most recent AFSC stock asssessment and catch statistics
 

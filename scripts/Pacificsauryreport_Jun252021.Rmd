@@ -31,7 +31,7 @@ Pacific saury have a two-year life cycle, migrating between summer feeding groun
 
 Pacific saury mature about 8 months after hatching, at around 22cm (Suyama et al. 2016), though there is growth variation depending where larvae have hatched. Age-1 fish grow to 27cm by June and July when Japanese fishery-independent surveys are conducted, and to 30cm when fishery occurs between August and December (Suyama et al. 2006).
 
-![NPFC convention area](C:/Users/Andrew Chin/Documents/GitHub/NPFC figs/rmd/Map-of-NPFC-Area.jpg)
+![NPFC convention area](C:/Users/Andrew Chin/Documents/GitHub/NPFC figs/output/rmd/Map-of-NPFC-Area.jpg)
 
 ## Fishery
 Pacific saury are managed by the North Pacific Fisheries Commission (NPFC) by its six of its eight memeber countries: China, Japan, Korea, Russia, Chinese Taipei, and Vanuatu (Figure 1). The two other member countries, Canada and the United States, do not have a sustained commerical history with Pacific saury and are rarely caught as bycatch.
@@ -71,7 +71,7 @@ saurycatchplot_noTAC <- ggplot(data=saury, aes(x=year, y=catch_mton, fill=countr
   ggtitle('Pacific saury catch (all waters)') +
     labs(fill='NPFC convention countries', caption='Data from https://www.npfc.int/statistics.') # +
 #    geom_hline(yintercept=333.75,color='black',linetype='longdash', size=1)
-# ggsave(here('rmd', 'NPFC_saury_catch_allcountries_noTAC.png'), saurycatchplot_noTAC, width=200, height=150, units='mm')
+# ggsave(here('output/figures', 'NPFC_saury_catch_allcountries_noTAC.png'), saurycatchplot_noTAC, width=200, height=150, units='mm')
 saurycatchplot
 ```
 Figure 2: Total Pacific saury catch reported to the NPFC. Black dashed line indicates 333,750 metric ton TAC instituted for 2021 and 2022.
@@ -99,7 +99,7 @@ saurycatchplot_CA <- catchplotfnc_CA('pacific_saury', CA=TRUE) +
   theme(legend.position = 'bottom') +
   ggtitle('Pacific saury catch in NPFC high seas convention area') +
   labs(fill='NPFC convention countries', caption='Data from https://www.npfc.int/statistics.')
-# ggsave(here('rmd', 'NPFC_saury_catch_allcountries_CA.png'), saurycatchplot_CA, width=200, height=150, units='mm')
+# ggsave(here('output/figures', 'NPFC_saury_catch_allcountries_CA.png'), saurycatchplot_CA, width=200, height=150, units='mm')
 
 saurycatchplot_CA
 ```
@@ -134,7 +134,7 @@ geom_hline(yintercept=333.75,color='black',linetype='longdash', size=1) +
 theme(legend.position='bottom') +
 labs(fill='Catch Region', caption='Data from https://www.npfc.int/statistics.') +
   ggtitle("Pacific saury catches in national waters (NW) and NPFC Convention Area (CA)")
-# ggsave(here('rmd', 'NPFC_saury_catch_allcountries_CAvNW.png'), saurycatchplot_areacomparison, width=200, height=150, units='mm')
+# ggsave(here('output/figures', 'NPFC_saury_catch_allcountries_CAvNW.png'), saurycatchplot_areacomparison, width=200, height=150, units='mm')
 
 saurycatchplot_areacomparison
 ```
@@ -194,7 +194,7 @@ cpue_plotgrid <- plot_grid(cpue_china + ylab(NULL),
           scale=0.9) +
 theme(plot.margin=margin(l=10)) +
 draw_label(label='NPFC standardized CPUE', x=0.01, y=0.5, angle=90)
-# ggsave(here('rmd', 'NPFC_saury_stockassessmentCPUE_allcountries.png'), cpue_plotgrid, width=300, height=150, units='mm')
+# ggsave(here('output/figures', 'NPFC_saury_stockassessmentCPUE_allcountries.png'), cpue_plotgrid, width=300, height=150, units='mm')
 
 cpue_plotgrid
 ```
@@ -206,10 +206,10 @@ Figure 5: Time series of standardized CPUE indices used by the NPFC to estimate 
 
 Zone 1 of the IYS Expedition overlaps strongly with the summer feeding grounds and autumn fishing grounds of Pacific saury (Figure 6 & 7). In addition, coho salmon are known to be predators of saury as well (Sato and Hirakawa 1976). In a review paper on Pacific salmonid feeding ecology, Brodeur (1990) reported that Chinook, coho, and masu salmon opportunistically feed on saury. Changes in the Kuroshio and the KOTZ could influence production or interactions between salmon and Pacific saury.
 
-![saury LH schematic](C:/Users/Andrew Chin/Documents/GitHub/NPFC figs/rmd/life-history-of-Pacific-saury-diagram.png)
+![saury LH schematic](C:/Users/Andrew Chin/Documents/GitHub/NPFC figs/output/rmd/life-history-of-Pacific-saury-diagram.png)
 Figure 6: Schematic diagram of life history of Pacific saury and ocean circulations in the northwestern Pacific. Solid lines indicate dominant current systems and dashed lines the migration routes. from [Ito et al. 2004](http://dx.doi.org/10.1111/j.1365-2419.2004.00309.x).
 
-![IYS_2021_grid_draft3](C:/Users\\Andrew Chin\\Documents\\GitHub\\NPFC figs\\rmd\\IYS_2021_grid_draft3.jpg)
+![IYS_2021_grid_draft3](C:/Users/Andrew Chin/Documents/GitHub/NPFC figs/output/rmd/IYS_2021_grid_draft3.jpg)
 Figure 7: Planned sampling zones for the IYS 2022 Pan-Pacific Winter Expedition.
 
 
@@ -251,3 +251,8 @@ Watanabe Y., Lo N.C.H. 1989. Larval production and mortality of Pacific saury, *
 northwestern Pacific Ocean. Fish. Bull. US. 87: 601–613.
 
 Yatsu A. 2019. Review of population dynamics and management of small pelagic fishes around the Japanese Archipelago. Fish Sci. 85: 611-639.
+
+
+```{r, echo=FALSE}
+rmarkdown::render("C:/Users/Andrew Chin/Documents/GitHub/BECI figs/output/reports/Pacificsauryreport_Jun252021.pdf")
+```
