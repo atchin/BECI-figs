@@ -1,4 +1,4 @@
-# BECI Figures
+# 🐟 📊 BECI Figures
  Collating data and creating figures on catch and status of important North Pacific fish stocks, in order to support the BECI proposal by the NPAFC for the U.N. Decade of Ocean Science.
 
 ## Directory of Relevant Files
