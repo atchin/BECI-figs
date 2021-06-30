@@ -1,6 +1,44 @@
-# BECI figs
+# BECI Figures
  Collating data and creating figures on catch and status of important North Pacific fish stocks, in order to support the BECI proposal by the NPAFC for the U.N. Decade of Ocean Science.
 
+## Directory of Relevant Files
+*Date suffixes denote the date when significant changes were last made.*
+
+```
+IYS_gsi_results_figures
+|-- data
+|   |-- NPFC_data_READ.ME.txt
+|   `-- NPFC_saury_CPUE_2019_stock_assessment_June182021.csv
+|   `-- NPFCcatchstats_June102021.csv
+|   `-- NPFCeffortstats_June102021.csv
+|   `-- pacific_cod_abundance_survey_data_June252021.csv
+|   `-- pacific_cod_catch_June252021.csv
+|   `-- pacific_cod_catchlimits_June252021.csv
+|   |-- raw data
+|       |-- NPFC
+|           |-- NPFC_saury_CPUE_2019_stock_assessment_June182021.xlsx
+|           `-- NPFC-2021-AR-Annual Summary Footprint - Bottom Fisheries.xlsx
+|           `-- NPFC-2021-AR-Annual Summary Footprint - Chub&Spotted Mackerel.xlsx
+|           `-- NPFC-2021-AR-Annual Summary Footprint - Japanese Sardine.xlsx
+|           `-- NPFC-2021-AR-Annual Summary Footprint - Pacific saury.xlsx
+|           `-- NPFC-2021-AR-Annual Summary Footprint - Squids.xlsx
+|       `-- Pacific_cod
+|           |-- GOApcod.pdf
+|           `-- Pacific_cod_acronyms_READ.ME.txt
+|           `-- Pacific_cod_stockassessment_June252021.xlsx
+|       `-- rawdata_READ.ME.txt
+|       `-- USA Fisheries Disasters_Apr20_AS2.xlsx
+`-- scripts
+|   |-- NPFC catch data.Rmd
+|   `-- Pacificsauryreport_June252021.Rmd
+`-- output
+|   |-- figures
+|   `-- reports
+|   `-- rmd
+`-- Literature
+`-- NPFC catch data worklog.txt
+
+```
 
 ## 'data' folder
 This folder contains the .csv files that are pulled into the RStudio workspace and analyzed.
@@ -8,7 +46,7 @@ This folder contains the .csv files that are pulled into the RStudio workspace a
 ### *Important files and folders*
 *NPFC_data_READ.ME.txt*: some notes on the abbreviations and data limitations in the NPFC catch and effort data.
 
-*'rawdata'* folder: the raw, unformatted data from the North Pacific Fisheries Commission (NPFC) and the National Ocean and Atmospheric Administration (NOAA)'s 2020 stock assessment of Pacific cod in US waters. the READ.ME.txt has the sources for these files.
+*'rawdata'* folder: the raw, unformatted (*i.e.,* in .xlsx format) data from the North Pacific Fisheries Commission (NPFC) on six prioirty species, including Pacific saury, and the National Ocean and Atmospheric Administration (NOAA)'s 2020 stock assessment of Pacific cod in US waters. the READ.ME.txt has the sources for these files.
 
 
 ## 'scripts' folder
