@@ -52,7 +52,7 @@ This folder is where figures and RMarkdown reports write to, given the ```here::
 
 *'reports'* folder: where the RMarkdown knits and exports the PDF to, given a short code snippet at the end:
 ```{r, echo=FALSE}
-rmarkdown::render("C:/Users/Andrew Chin/Documents/GitHub/BECI figs/output/reports/Pacificsauryreport_Jun252021.pdf")
+rmarkdown::render("C:~/GitHub/BECI figs/output/reports/Pacificsauryreport_Jun252021.pdf")
 ```
 
 *'rmd'* folder: where report figures not generated in R are saved. They are included in the report via their file path, so these must be edited before compiling the report.
