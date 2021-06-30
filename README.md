@@ -16,16 +16,7 @@ IYS_gsi_results_figures
 |   `-- pacific_cod_catchlimits_June252021.csv
 |   |-- raw data
 |       |-- NPFC
-|           |-- NPFC_saury_CPUE_2019_stock_assessment_June182021.xlsx
-|           `-- NPFC-2021-AR-Annual Summary Footprint - Bottom Fisheries.xlsx
-|           `-- NPFC-2021-AR-Annual Summary Footprint - Chub&Spotted Mackerel.xlsx
-|           `-- NPFC-2021-AR-Annual Summary Footprint - Japanese Sardine.xlsx
-|           `-- NPFC-2021-AR-Annual Summary Footprint - Pacific saury.xlsx
-|           `-- NPFC-2021-AR-Annual Summary Footprint - Squids.xlsx
 |       `-- Pacific_cod
-|           |-- GOApcod.pdf
-|           `-- Pacific_cod_acronyms_READ.ME.txt
-|           `-- Pacific_cod_stockassessment_June252021.xlsx
 |       `-- rawdata_READ.ME.txt
 |       `-- USA Fisheries Disasters_Apr20_AS2.xlsx
 `-- scripts
@@ -33,6 +24,7 @@ IYS_gsi_results_figures
 |   `-- Pacificsauryreport_June252021.Rmd
 `-- output
 |   |-- figures
+|       |--
 |   `-- reports
 |   `-- rmd
 `-- Literature
