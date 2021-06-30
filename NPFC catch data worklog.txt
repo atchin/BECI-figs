@@ -1,8 +1,30 @@
 NPFC worklog --
+Originator: Andrew Chin, andrewthomchin@gmail.com
+Start date: 2021-06-09
 Objectives:
-  - contextualize fisheries in the Western Pacific
+  - contextualize fisheries in the Northern Pacific to support BECI proposal
     - visualize catch/CPUE from priority NPFC species
       - contextualize NPFC fisheries, especially Pacific saury, with effort and proceedings from NPFC meetings
+    - visualize Pacific cod catch
+************************************************************
+2021-06-30--
+Files edited:
+  - 'README.md'
+  - 'NPFC_data_READ.ME.txt'
+  - moved 'rmd' folder to 'output\rmd'
+
+Brief:
+  - updated READ.MEs, push to public
+
+Summary:
+  - updated the README detailing what the different folders are for how they work
+  - w/ Caroline: went over status of the repo and decided to post a link to the repo at "~\NORTH PACIFIC ANADROMOUS FISH COMMI\Secretariat - Documents\Decade of the Ocean\Plots"
+  - pushed to public GitHub
+
+Breadcrumbs:
+  - create scripts + plots for Pacific cod
+
+
 
 ************************************************************
 2021-06-28--

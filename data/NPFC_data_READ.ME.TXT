@@ -4,8 +4,33 @@ In region:
   - 'NW' = National Waters, or within a country's EEZ (200 nm)
   - 'CA' = NPFC Convention Area
 
-In gear:
-  - 'other' = ???
+Gears used by NPFC-authorized vessels:
+Boat-operated lift nets (LNB)	18
+Boat-operated lift nets (LNB), Handlines and hand-operated pole-and-lines (LHP)	191
+Boat-operated lift nets (LNB), Hooks and lines (nei) (LX)	13
+Boat-operated lift nets (LNB), Mechanized lines and pole-and-lines (LHM)	1
+Gear not known (NK)	92
+GILLNETS AND ENTANGLING NETS, Hooks and lines (nei) (LX)	1
+Handlines and hand-operated pole-and-lines (LHP)	491
+Handlines and hand-operated pole-and-lines (LHP), Gear not known (NK)	87
+Hooks and lines (nei) (LX)	81
+Midwater trawls (nei) (TM)	2
+Purse seines (PS)	116
+Purse seines (PS), Midwater trawls (nei) (TM)	3
+Purse seines (PS), TRAWLS	1
+SEINE NETS	1
+Seine nets (nei) (SX)	2
+Semipelagic trawls (TSP)	2
+Set longlines (LLS)	3
+Single boat midwater otter trawls (OTM)	3
+Stick-held dip net (SHDN)	166
+Stick-held dip net (SHDN), Handlines and hand-operated pole-and-lines (LHP)	2
+Stick-held dip net (SHDN), Hooks and lines (nei) (LX)	1
+Traps (nei) (FIX)	1
+TRAWLS	12
+Trawls (nei) (TX)	11
+TOTAL	1301
+
 
 - Japan has mostly preliminary estimates for catch and effort for all species in 2020
 - Japan's effort on Japanese sardine has not been updated for 2020
