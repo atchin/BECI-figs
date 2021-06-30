@@ -14,7 +14,7 @@ IYS_gsi_results_figures
 |   `-- pacific_cod_abundance_survey_data_June252021.csv
 |   `-- pacific_cod_catch_June252021.csv
 |   `-- pacific_cod_catchlimits_June252021.csv
-|   |-- raw data
+|   `-- raw data
 |       |-- NPFC
 |       `-- Pacific_cod
 |       `-- rawdata_READ.ME.txt
