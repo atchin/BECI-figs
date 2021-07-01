@@ -38,7 +38,11 @@ This folder contains the .csv files that are pulled into the RStudio workspace a
 ### *Important files and folders*
 *NPFC_data_READ.ME.txt*: some notes on the abbreviations and data limitations in the NPFC catch and effort data.
 
-*'rawdata'* folder: the raw, unformatted (*i.e.,* in .xlsx format) data from the North Pacific Fisheries Commission (NPFC) on six prioirty species, including Pacific saury, and the National Ocean and Atmospheric Administration (NOAA)'s 2020 stock assessment of Pacific cod in US waters. the READ.ME.txt has the sources for these files.
+*'rawdata'* folder: the raw, unformatted (*i.e.,* in .xlsx format) data from the North Pacific Fisheries Commission (NPFC) on six priority species, including Pacific saury, and the National Ocean and Atmospheric Administration (NOAA)'s 2020 stock assessment of Pacific cod in US waters.
+- [NPFC data](https://www.npfc.int/statistics)
+- [2020 GOA Pacific cod stock asssessment](https://www.fisheries.noaa.gov/resource/data/2020-assessment-pacific-cod-stock-gulf-alaska)
+
+The READ.ME.txt also has the sources for these files.
 
 
 ## 'scripts' folder
@@ -50,9 +54,9 @@ This folder is where figures and RMarkdown reports write to, given the ```here::
 ### *Important files and folders*
 *'figures'* folder: where figures from ```NPFC catch data.Rmd``` write to. The default for separate figures apart from report.
 
-*'reports'* folder: where the RMarkdown knits and exports the PDF to, given a short code snippet at the end:
+*'reports'* folder: where the RMarkdown knits and exports the PDF to, given a short code snippet at the end of the report:
 ```{r, echo=FALSE}
 rmarkdown::render("C:~/GitHub/BECI figs/output/reports/Pacificsauryreport_Jun252021.pdf")
 ```
 
-*'rmd'* folder: where report figures not generated in R are saved. They are included in the report via their file path, so these must be edited before compiling the report.
+*'rmd'* folder: where report figures not generated in R are stored. They are included in the report via their file path, so these must be edited to your own directory before compiling the report.
