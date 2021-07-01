@@ -39,8 +39,8 @@ This folder contains the .csv files that are pulled into the RStudio workspace a
 *NPFC_data_READ.ME.txt*: some notes on the abbreviations and data limitations in the NPFC catch and effort data.
 
 *'rawdata'* folder: the raw, unformatted (*i.e.,* in .xlsx format) data from the North Pacific Fisheries Commission (NPFC) on six priority species, including Pacific saury, and the National Ocean and Atmospheric Administration (NOAA)'s 2020 stock assessment of Pacific cod in US waters.
-- [NPFC data](https://www.npfc.int/statistics)
-- [2020 GOA Pacific cod stock asssessment](https://www.fisheries.noaa.gov/resource/data/2020-assessment-pacific-cod-stock-gulf-alaska)
+- [NPFC data (.xlsx format)](https://www.npfc.int/statistics)
+- [2020 GOA Pacific cod stock asssessment (PDF report)](https://www.fisheries.noaa.gov/resource/data/2020-assessment-pacific-cod-stock-gulf-alaska)
 
 The READ.ME.txt also has the sources for these files.
 
